@@ -1,6 +1,6 @@
-import ProductPreviewListItemDescription from "../atoms/products-preview-list-item-description";
+import ListItemDescription from "../../atoms/products-preview-list/products-preview-list-item-description";
 
-const ProductPreviewListItem = ({ product }: { product: Product }) => {
+const ListItem = ({ product }: { product: Product }) => {
   return (
     <>
       <div className="aspect-h-1 aspect-w-1 lg:aspect-none w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:h-80">
@@ -10,9 +10,9 @@ const ProductPreviewListItem = ({ product }: { product: Product }) => {
           className="h-full w-full object-cover object-center lg:h-full lg:w-full"
         />
       </div>
-      <ProductPreviewListItemDescription {...product} />
+      <ListItemDescription {...product} />
     </>
   );
 };
 
-export default ProductPreviewListItem;
+export default ListItem;

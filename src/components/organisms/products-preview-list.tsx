@@ -1,4 +1,4 @@
-import ProductPreviewListItem from "../molecules/products-preview-list-item";
+import ListItem from "../molecules/products-preview-list/list-item";
 
 const ProductsPreviewList = ({ products }: { products: Product[] }) => {
   return (
@@ -10,7 +10,7 @@ const ProductsPreviewList = ({ products }: { products: Product[] }) => {
         >
           {products.map((product) => (
             <li className="group relative" key={product.id}>
-              <ProductPreviewListItem product={product} />
+              <ListItem product={product} />
             </li>
           ))}
         </ul>
