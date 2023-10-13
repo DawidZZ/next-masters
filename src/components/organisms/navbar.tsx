@@ -1,5 +1,3 @@
-"use client";
-
 import Links from "../molecules/navbar/links";
 
 function Navbar() {

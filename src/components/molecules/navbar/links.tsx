@@ -1,15 +1,18 @@
+"use client";
+
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import ActiveLink from "@/components/atoms/navbar/active-link";
+import { type NavLink } from "@/types/navbar";
 
-const links: Link[] = [
+const links: NavLink[] = [
   { href: "/", text: "Home" },
   { href: "/products", text: "All" },
 ];
 
 const Links = () => {
   const pathname = usePathname();
-  const [activeLink, setActiveLink] = useState<Link>(
+  const [activeLink, setActiveLink] = useState<NavLink>(
     links.find((link) => link.href === pathname) ?? links[0],
   );
 
@@ -20,7 +23,7 @@ const Links = () => {
           {links.map((link) => (
             <ActiveLink
               key={link.href}
-              link={link}
+              {...link}
               isActive={link === activeLink}
               onClick={() => setActiveLink(link)}
             />
