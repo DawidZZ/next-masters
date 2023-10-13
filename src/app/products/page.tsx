@@ -1,3 +1,3 @@
-export default function Index() {
-  return <div>Hello</div>;
+export default async function Products() {
+  return <div></div>;
 }

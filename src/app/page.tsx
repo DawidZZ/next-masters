@@ -36,5 +36,9 @@ const products: Product[] = [
 ];
 
 export default function Home() {
-  return <ProductsPreviewList products={products} />;
+  return (
+    <div className="flex h-full flex-col justify-center bg-white">
+      <ProductsPreviewList products={products} />
+    </div>
+  );
 }
