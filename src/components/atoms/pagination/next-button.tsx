@@ -1,0 +1,31 @@
+"use client";
+
+import { ChevronRightIcon } from "@heroicons/react/20/solid";
+import Link from "next/link";
+import { useParams } from "next/navigation";
+
+const NextButton = ({ href, max = 10 }: { href: PaginationSupportedRoutes; max: number }) => {
+  const { page } = useParams();
+
+  return (
+    <>
+      {Number(page) >= max ? (
+        <div className="ring-gray-30 relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-200 ring-1 ring-inset focus:z-20 focus:outline-offset-0">
+          <span className="sr-only">Next</span>
+          <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />
+        </div>
+      ) : (
+        <Link
+          href={`${href}/${Number(page) + 1}`}
+          className="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
+          scroll={false}
+        >
+          <span className="sr-only">Next</span>
+          <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />
+        </Link>
+      )}
+    </>
+  );
+};
+
+export default NextButton;
