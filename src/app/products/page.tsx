@@ -1,3 +1,4 @@
+import Pagination from "@/components/organisms/pagination";
 import ProductsGrid from "@/components/organisms/products-grid";
 
 export default async function Products() {
@@ -7,6 +8,7 @@ export default async function Products() {
   return (
     <div className="min-h-full bg-white">
       <ProductsGrid products={products} />
+      <Pagination from={1} to={10} href="/products" />
     </div>
   );
 }
