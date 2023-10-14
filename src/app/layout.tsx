@@ -15,7 +15,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="pl">
       <body className={`${inter.className} h-screen`}>
         <Navbar />
-        <main className="h-full pt-16">{children}</main>
+        <main className="h-full">{children}</main>
       </body>
     </html>
   );
