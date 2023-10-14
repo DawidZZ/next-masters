@@ -1,4 +1,4 @@
-import ActiveLink from "@/components/atoms/navbar/active-link";
+import ActiveLink from "@/components/atoms/shared/active-link";
 import PreviousButton from "@/components/atoms/pagination/previous-button";
 import NextButton from "@/components/atoms/pagination/next-button";
 

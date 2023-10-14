@@ -1,4 +1,4 @@
-import ActiveLink from "@/components/atoms/navbar/active-link";
+import ActiveLink from "@/components/atoms/shared/active-link";
 
 const Links = () => {
   return (
