@@ -1,6 +1,11 @@
 import Pagination from "@/components/organisms/pagination";
 import ProductsGrid from "@/components/organisms/products-grid";
 
+// TODO: temporary solution
+export function generateStaticParams() {
+  return Array(10).map((_, i) => i + 1);
+}
+
 export default async function Products({ params }: { params: { page: string } }) {
   const response = await fetch(
     `https://naszsklep-api.vercel.app/api/products?take=20&offset=${
