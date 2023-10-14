@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation";
 const ActiveLink = <T extends string>({
   href,
   children,
-  className = "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white",
+  className = "rounded-md px-4 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white",
   activeClassName = "rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white",
   exact = false,
 }: {
