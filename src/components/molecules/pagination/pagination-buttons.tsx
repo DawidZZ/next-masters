@@ -17,11 +17,6 @@ const PaginationButtons = ({
   className?: string;
   activeClassName?: string;
 }) => {
-  // const buttons: number[] =
-  //   to - from < 7
-  //     ? Array(to - from).map((_, i) => i + from)
-  //     : [from, from + 1, from + 2, -1, to - 2, to - 1, to];
-
   const range = (start: number, end: number) =>
     Array.from({ length: end - start + 1 }, (_, k) => k + start);
 
@@ -40,7 +35,7 @@ const PaginationButtons = ({
   }
 
   return (
-    <div>
+    <div aria-label="pagination">
       <nav className="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
         <PreviousButton href={href} />
         {buttons.map((button) =>
