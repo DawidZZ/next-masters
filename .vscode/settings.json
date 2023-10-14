@@ -2,6 +2,9 @@
   "typescript.tsdk": "node_modules/typescript/lib",
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": true,
+  "editor.tabSize": 2,
   "editor.codeActionsOnSave": {
     "source.fixAll": true
   },

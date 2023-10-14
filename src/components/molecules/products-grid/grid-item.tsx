@@ -2,8 +2,8 @@ import Link from "next/link";
 
 const GridItem = ({ product: { id, image, description, price, title } }: { product: Product }) => {
   return (
-    <Link href={`/products/${id}`} className="group">
-      <div className="aspect-square w-full overflow-hidden rounded-lg bg-gray-200 p-2">
+    <Link href={`/product/${id}`} className="group">
+      <div className="aspect-h-1 aspect-w-1 xl:aspect-h-8 xl:aspect-w-7 w-full overflow-hidden rounded-lg bg-gray-200 p-2">
         <img
           src={image}
           alt={description}

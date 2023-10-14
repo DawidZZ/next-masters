@@ -16,6 +16,8 @@
     "import/order": "error",
     "import/no-mutable-exports": "error",
     "import/no-cycle": "error",
+    // TODO: remove later
+    "@next/next/no-img-element": "off",
     "@typescript-eslint/ban-types": [
       "error",
       {
