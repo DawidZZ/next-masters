@@ -1,13 +1,15 @@
-import AddToCartForm from "@/components/atoms/product-view/product-add-to-cart-form";
+import AddToCartForm from "@/components/molecules/product-view/product-add-to-cart-form";
 import ProductDetails from "@/components/atoms/product-view/product-details";
 import Rating from "@/components/atoms/product-view/rating";
 
 const ProductInfo = ({
+  id,
   title,
   price,
   description,
   rating,
 }: {
+  id: string;
   title: string;
   price: number;
   description: string;
@@ -26,7 +28,7 @@ const ProductInfo = ({
 
         <Rating rate={rating.rate} count={rating.count} />
 
-        <AddToCartForm />
+        <AddToCartForm id={id} />
       </div>
 
       <ProductDetails description={description} />

@@ -3,13 +3,7 @@ query CollectionsGetProducts($slug: String) {
     name
     slug
     products {
-      name
-      price
-      id
-      description
-      images {
-        url
-      }
+      ...ProductListItem
     }
   }
 }

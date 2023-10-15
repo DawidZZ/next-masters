@@ -2,13 +2,7 @@ query CategoryGetProducts($slug: String, $count: Int, $offset: Int) {
   categories(where: { slug_contains: $slug }) {
     name
     products(first: $count, skip: $offset) {
-      id
-      name
-      description
-      images(first: 4) {
-        url
-      }
-      price
+      ...ProductListItem
     }
   }
 }

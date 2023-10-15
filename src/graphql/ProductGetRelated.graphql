@@ -2,13 +2,7 @@ query ProductGetRelated($id: ID!) {
   product(where: { id: $id }) {
     categories(first: 1) {
       products(first: 4) {
-        id
-        name
-        description
-        price
-        images {
-          url
-        }
+        ...ProductListItem
       }
     }
   }

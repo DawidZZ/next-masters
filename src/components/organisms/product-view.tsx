@@ -16,13 +16,14 @@ const ProductView = ({ product }: { product: Product }) => {
         <ProductImageGallery images={images} description={description} />
 
         <ProductInfo
+          id={product.id}
           title={name}
           price={price}
           description={description}
           rating={{ rate, count }}
         />
       </div>
-      <div data-testid="related-products">
+      <div>
         <h2 className="pl-10  text-lg font-bold tracking-tight text-gray-900 sm:text-3xl">
           Others from this category
         </h2>

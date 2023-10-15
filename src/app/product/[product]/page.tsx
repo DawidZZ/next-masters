@@ -8,6 +8,18 @@ export async function generateMetadata({ params }: { params: { product: string }
   return {
     title: product?.name || "Product",
     description: product?.description || "Product",
+    openGraph: {
+      title: product?.name || "Product",
+      description: product?.description || "Product",
+      images: [
+        {
+          url: product?.images[0].url || "",
+          width: 800,
+          height: 600,
+          alt: product?.name || "Product",
+        },
+      ],
+    },
   };
 }
 
