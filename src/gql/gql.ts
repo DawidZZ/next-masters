@@ -20,6 +20,7 @@ const documents = {
     "query CollectionsGetList {\n  collections {\n    name\n    slug\n  }\n}": types.CollectionsGetListDocument,
     "query CollectionsGetProducts($slug: String) {\n  collections(where: {slug_contains: $slug}) {\n    name\n    slug\n    products {\n      name\n      price\n      id\n      description\n      images {\n        url\n      }\n    }\n  }\n}": types.CollectionsGetProductsDocument,
     "query ProductGetById($id: ID!) {\n  product(where: {id: $id}) {\n    id\n    name\n    description\n    categories {\n      name\n    }\n    images {\n      url\n    }\n    price\n    reviews {\n      rating\n    }\n  }\n}": types.ProductGetByIdDocument,
+    "query ProductGetRelated($id: ID!) {\n  product(where: {id: $id}) {\n    categories(first: 1) {\n      products(first: 4) {\n        id\n        name\n        description\n        price\n        images {\n          url\n        }\n      }\n    }\n  }\n}": types.ProductGetRelatedDocument,
     "query ProductsGetList($count: Int, $offset: Int) {\n  products(first: $count, skip: $offset) {\n    id\n    name\n    description\n    categories(first: 1) {\n      name\n    }\n    images(first: 4) {\n      url\n    }\n    price\n  }\n}": types.ProductsGetListDocument,
 };
 
@@ -47,6 +48,10 @@ export function graphql(source: "query CollectionsGetProducts($slug: String) {\n
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "query ProductGetById($id: ID!) {\n  product(where: {id: $id}) {\n    id\n    name\n    description\n    categories {\n      name\n    }\n    images {\n      url\n    }\n    price\n    reviews {\n      rating\n    }\n  }\n}"): typeof import('./graphql').ProductGetByIdDocument;
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "query ProductGetRelated($id: ID!) {\n  product(where: {id: $id}) {\n    categories(first: 1) {\n      products(first: 4) {\n        id\n        name\n        description\n        price\n        images {\n          url\n        }\n      }\n    }\n  }\n}"): typeof import('./graphql').ProductGetRelatedDocument;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

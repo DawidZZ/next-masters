@@ -10755,6 +10755,13 @@ export type ProductGetByIdQueryVariables = Exact<{
 
 export type ProductGetByIdQuery = { product?: { id: string, name: string, description: string, price: number, categories: Array<{ name: string }>, images: Array<{ url: string }>, reviews: Array<{ rating: number }> } | null };
 
+export type ProductGetRelatedQueryVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type ProductGetRelatedQuery = { product?: { categories: Array<{ products: Array<{ id: string, name: string, description: string, price: number, images: Array<{ url: string }> }> }> } | null };
+
 export type ProductsGetListQueryVariables = Exact<{
   count?: InputMaybe<Scalars['Int']['input']>;
   offset?: InputMaybe<Scalars['Int']['input']>;
@@ -10862,6 +10869,23 @@ export const ProductGetByIdDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<ProductGetByIdQuery, ProductGetByIdQueryVariables>;
+export const ProductGetRelatedDocument = new TypedDocumentString(`
+    query ProductGetRelated($id: ID!) {
+  product(where: {id: $id}) {
+    categories(first: 1) {
+      products(first: 4) {
+        id
+        name
+        description
+        price
+        images {
+          url
+        }
+      }
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<ProductGetRelatedQuery, ProductGetRelatedQueryVariables>;
 export const ProductsGetListDocument = new TypedDocumentString(`
     query ProductsGetList($count: Int, $offset: Int) {
   products(first: $count, skip: $offset) {
