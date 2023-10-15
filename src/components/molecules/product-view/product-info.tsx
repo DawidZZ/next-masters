@@ -6,13 +6,11 @@ const ProductInfo = ({
   title,
   price,
   description,
-  longDescription,
   rating,
 }: {
   title: string;
   price: number;
   description: string;
-  longDescription: string;
   rating: { rate: number; count: number };
 }) => {
   return (
@@ -24,14 +22,14 @@ const ProductInfo = ({
       {/* Options */}
       <div className="mt-4 lg:row-span-3 lg:mt-0">
         <h2 className="sr-only">Product information</h2>
-        <p className="text-3xl tracking-tight text-gray-900">${price}</p>
+        <p className="text-3xl tracking-tight text-gray-900">${price / 100}</p>
 
         <Rating rate={rating.rate} count={rating.count} />
 
         <AddToCartForm />
       </div>
 
-      <ProductDetails description={description} longDescription={longDescription} />
+      <ProductDetails description={description} />
     </div>
   );
 };

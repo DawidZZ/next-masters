@@ -9,6 +9,7 @@ const Links = () => {
             Home
           </ActiveLink>
           <ActiveLink href="/products">All</ActiveLink>
+          <ActiveLink href="/categories">Categories</ActiveLink>
         </div>
       </div>
     </div>
