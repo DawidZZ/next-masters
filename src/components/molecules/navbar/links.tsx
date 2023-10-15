@@ -12,6 +12,7 @@ const Links = () => {
           <ActiveLink href="/categories/t-shirts">T-Shirts</ActiveLink>
           <ActiveLink href="/categories/hoodies">Hoodies</ActiveLink>
           <ActiveLink href="/categories/accessories">Accessories</ActiveLink>
+          <ActiveLink href="/cart">Cart</ActiveLink>
         </div>
       </div>
     </div>

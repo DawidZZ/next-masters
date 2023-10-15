@@ -2,6 +2,7 @@ import { cookies } from "next/headers";
 import { executeGraphql } from "./graphqlApi";
 import {
   CartAddItemDocument,
+  CartChangeItemQuantityDocument,
   CartCreateDocument,
   CartGetByIdDocument,
   ProductGetByIdDocument,
@@ -28,9 +29,25 @@ export async function getOrCreateCart() {
 }
 
 export async function addProductToCart(cartId: string, productId: string) {
+  const { order: cart } = await executeGraphql(CartGetByIdDocument, {
+    id: cartId,
+  });
+
+  if (cart?.orderItems.some((item) => item.product?.id === productId)) {
+    const orderItem = cart.orderItems.find((item) => item.product?.id === productId);
+    if (!orderItem) return;
+    await executeGraphql(CartChangeItemQuantityDocument, {
+      itemId: orderItem.id as string,
+      quantity: orderItem.quantity + 1,
+    });
+
+    return;
+  }
+
   const { product } = await executeGraphql(ProductGetByIdDocument, {
     id: productId,
   });
+
   if (!product) {
     throw new Error(`Product with id ${productId} not found`);
   }
