@@ -6,7 +6,7 @@ query ProductsGetList($count: Int, $offset: Int) {
     categories(first: 1) {
       name
     }
-    images(first: 1) {
+    images(first: 4) {
       url
     }
     price

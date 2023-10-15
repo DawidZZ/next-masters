@@ -9,7 +9,9 @@ const Links = () => {
             Home
           </ActiveLink>
           <ActiveLink href="/products">All</ActiveLink>
-          <ActiveLink href="/categories">Categories</ActiveLink>
+          <ActiveLink href="/categories/t-shirts">T-Shirts</ActiveLink>
+          <ActiveLink href="/categories/hoodies">Hoodies</ActiveLink>
+          <ActiveLink href="/categories/accessories">Accessories</ActiveLink>
         </div>
       </div>
     </div>

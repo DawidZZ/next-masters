@@ -1,1 +1,1 @@
-type PaginationSupportedRoutes = "/products";
+type PaginationSupportedRoutes = "/products" | `/categories/${string}`;

@@ -9,7 +9,7 @@ const ActiveLink = <T extends string>({
   href,
   children,
   className = "rounded-md px-4 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white",
-  activeClassName = "rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white",
+  activeClassName = "rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-white border-b-2 border-gray-900",
   exact = false,
   ...props
 }: {
@@ -21,7 +21,10 @@ const ActiveLink = <T extends string>({
   props?: LinkProps<T>;
 }) => {
   const pathname = usePathname();
-  const generalPathname = `/${pathname.split("/")[1]}`;
+  const generalPathname =
+    pathname.split("/")[1] === "categories"
+      ? `/${pathname.split("/")[1]}/${pathname.split("/")[2]}`
+      : `/${pathname.split("/")[1]}`;
 
   const isActive = exact ? pathname === href : generalPathname === href;
 

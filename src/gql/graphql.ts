@@ -10715,6 +10715,27 @@ export type _SystemDateTimeFieldVariation =
   | 'combined'
   | 'localization';
 
+export type CategoryGetListQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type CategoryGetListQuery = { categories: Array<{ name: string, slug: string }> };
+
+export type CategoryGetAllProductsQueryVariables = Exact<{
+  slug?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type CategoryGetAllProductsQuery = { categories: Array<{ name: string, products: Array<{ id: string, name: string, description: string, price: number, images: Array<{ url: string }> }> }> };
+
+export type CategoryGetProductsQueryVariables = Exact<{
+  slug?: InputMaybe<Scalars['String']['input']>;
+  count?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
+}>;
+
+
+export type CategoryGetProductsQuery = { categories: Array<{ name: string, products: Array<{ id: string, name: string, description: string, price: number, images: Array<{ url: string }> }> }> };
+
 export type ProductGetByIdQueryVariables = Exact<{
   id: Scalars['ID']['input'];
 }>;
@@ -10745,6 +10766,46 @@ export class TypedDocumentString<TResult, TVariables>
   }
 }
 
+export const CategoryGetListDocument = new TypedDocumentString(`
+    query CategoryGetList {
+  categories {
+    name
+    slug
+  }
+}
+    `) as unknown as TypedDocumentString<CategoryGetListQuery, CategoryGetListQueryVariables>;
+export const CategoryGetAllProductsDocument = new TypedDocumentString(`
+    query CategoryGetAllProducts($slug: String) {
+  categories(where: {slug_contains: $slug}) {
+    name
+    products {
+      id
+      name
+      description
+      images(first: 4) {
+        url
+      }
+      price
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<CategoryGetAllProductsQuery, CategoryGetAllProductsQueryVariables>;
+export const CategoryGetProductsDocument = new TypedDocumentString(`
+    query CategoryGetProducts($slug: String, $count: Int, $offset: Int) {
+  categories(where: {slug_contains: $slug}) {
+    name
+    products(first: $count, skip: $offset) {
+      id
+      name
+      description
+      images(first: 4) {
+        url
+      }
+      price
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<CategoryGetProductsQuery, CategoryGetProductsQueryVariables>;
 export const ProductGetByIdDocument = new TypedDocumentString(`
     query ProductGetById($id: ID!) {
   product(where: {id: $id}) {
@@ -10773,7 +10834,7 @@ export const ProductsGetListDocument = new TypedDocumentString(`
     categories(first: 1) {
       name
     }
-    images(first: 1) {
+    images(first: 4) {
       url
     }
     price
