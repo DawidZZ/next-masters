@@ -1,0 +1,15 @@
+query CollectionsGetProducts($slug: String) {
+  collections(where: { slug_contains: $slug }) {
+    name
+    slug
+    products {
+      name
+      price
+      id
+      description
+      images {
+        url
+      }
+    }
+  }
+}

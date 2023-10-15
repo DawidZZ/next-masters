@@ -40,7 +40,7 @@ export default async function CategoryPage({
 
   return (
     <div className="min-h-full bg-white">
-      <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+      <h2 className="p-10 text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
         Category: {selectedCategory.name}
       </h2>
       <ProductsGrid products={selectedCategory.products} />

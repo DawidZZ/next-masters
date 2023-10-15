@@ -17,6 +17,8 @@ const documents = {
     "query CategoryGetList {\n  categories {\n    name\n    slug\n  }\n}": types.CategoryGetListDocument,
     "query CategoryGetAllProducts($slug: String) {\n  categories(where: {slug_contains: $slug}) {\n    name\n    products {\n      id\n      name\n      description\n      images(first: 4) {\n        url\n      }\n      price\n    }\n  }\n}": types.CategoryGetAllProductsDocument,
     "query CategoryGetProducts($slug: String, $count: Int, $offset: Int) {\n  categories(where: {slug_contains: $slug}) {\n    name\n    products(first: $count, skip: $offset) {\n      id\n      name\n      description\n      images(first: 4) {\n        url\n      }\n      price\n    }\n  }\n}": types.CategoryGetProductsDocument,
+    "query CollectionsGetList {\n  collections {\n    name\n    slug\n  }\n}": types.CollectionsGetListDocument,
+    "query CollectionsGetProducts($slug: String) {\n  collections(where: {slug_contains: $slug}) {\n    name\n    slug\n    products {\n      name\n      price\n      id\n      description\n      images {\n        url\n      }\n    }\n  }\n}": types.CollectionsGetProductsDocument,
     "query ProductGetById($id: ID!) {\n  product(where: {id: $id}) {\n    id\n    name\n    description\n    categories {\n      name\n    }\n    images {\n      url\n    }\n    price\n    reviews {\n      rating\n    }\n  }\n}": types.ProductGetByIdDocument,
     "query ProductsGetList($count: Int, $offset: Int) {\n  products(first: $count, skip: $offset) {\n    id\n    name\n    description\n    categories(first: 1) {\n      name\n    }\n    images(first: 4) {\n      url\n    }\n    price\n  }\n}": types.ProductsGetListDocument,
 };
@@ -33,6 +35,14 @@ export function graphql(source: "query CategoryGetAllProducts($slug: String) {\n
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "query CategoryGetProducts($slug: String, $count: Int, $offset: Int) {\n  categories(where: {slug_contains: $slug}) {\n    name\n    products(first: $count, skip: $offset) {\n      id\n      name\n      description\n      images(first: 4) {\n        url\n      }\n      price\n    }\n  }\n}"): typeof import('./graphql').CategoryGetProductsDocument;
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "query CollectionsGetList {\n  collections {\n    name\n    slug\n  }\n}"): typeof import('./graphql').CollectionsGetListDocument;
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "query CollectionsGetProducts($slug: String) {\n  collections(where: {slug_contains: $slug}) {\n    name\n    slug\n    products {\n      name\n      price\n      id\n      description\n      images {\n        url\n      }\n    }\n  }\n}"): typeof import('./graphql').CollectionsGetProductsDocument;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
