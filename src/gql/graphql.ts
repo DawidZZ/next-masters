@@ -10815,6 +10815,18 @@ export type ProductsGetSearchedQueryVariables = Exact<{
 
 export type ProductsGetSearchedQuery = { products: Array<{ id: string, description: string, name: string, price: number, images: Array<{ url: string }> }> };
 
+export type ReviewAddMutationVariables = Exact<{
+  productId: Scalars['ID']['input'];
+  rating: Scalars['Int']['input'];
+  content: Scalars['String']['input'];
+  headline: Scalars['String']['input'];
+  name: Scalars['String']['input'];
+  email: Scalars['String']['input'];
+}>;
+
+
+export type ReviewAddMutation = { createReview?: { id: string } | null };
+
 export class TypedDocumentString<TResult, TVariables>
   extends String
   implements DocumentTypeDecoration<TResult, TVariables>
@@ -11032,3 +11044,12 @@ export const ProductsGetSearchedDocument = new TypedDocumentString(`
     url
   }
 }`) as unknown as TypedDocumentString<ProductsGetSearchedQuery, ProductsGetSearchedQueryVariables>;
+export const ReviewAddDocument = new TypedDocumentString(`
+    mutation ReviewAdd($productId: ID!, $rating: Int!, $content: String!, $headline: String!, $name: String!, $email: String!) {
+  createReview(
+    data: {rating: $rating, content: $content, headline: $headline, name: $name, email: $email, product: {connect: {id: $productId}}}
+  ) {
+    id
+  }
+}
+    `) as unknown as TypedDocumentString<ReviewAddMutation, ReviewAddMutationVariables>;

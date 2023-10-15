@@ -29,6 +29,7 @@ const documents = {
     "fragment ProductListItem on Product {\n  id\n  description\n  name\n  price\n  images(first: 4) {\n    url\n  }\n}": types.ProductListItemFragmentDoc,
     "query ProductsGetList($count: Int, $offset: Int) {\n  products(first: $count, skip: $offset) {\n    id\n    name\n    description\n    categories(first: 1) {\n      name\n    }\n    images(first: 4) {\n      url\n    }\n    price\n  }\n}": types.ProductsGetListDocument,
     "query ProductsGetSearched($search: String!) {\n  products(where: {name_contains: $search}) {\n    ...ProductListItem\n  }\n}": types.ProductsGetSearchedDocument,
+    "mutation ReviewAdd($productId: ID!, $rating: Int!, $content: String!, $headline: String!, $name: String!, $email: String!) {\n  createReview(\n    data: {rating: $rating, content: $content, headline: $headline, name: $name, email: $email, product: {connect: {id: $productId}}}\n  ) {\n    id\n  }\n}": types.ReviewAddDocument,
 };
 
 /**
@@ -91,6 +92,10 @@ export function graphql(source: "query ProductsGetList($count: Int, $offset: Int
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "query ProductsGetSearched($search: String!) {\n  products(where: {name_contains: $search}) {\n    ...ProductListItem\n  }\n}"): typeof import('./graphql').ProductsGetSearchedDocument;
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "mutation ReviewAdd($productId: ID!, $rating: Int!, $content: String!, $headline: String!, $name: String!, $email: String!) {\n  createReview(\n    data: {rating: $rating, content: $content, headline: $headline, name: $name, email: $email, product: {connect: {id: $productId}}}\n  ) {\n    id\n  }\n}"): typeof import('./graphql').ReviewAddDocument;
 
 
 export function graphql(source: string) {

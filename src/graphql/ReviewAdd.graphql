@@ -1,0 +1,21 @@
+mutation ReviewAdd(
+  $productId: ID!
+  $rating: Int!
+  $content: String!
+  $headline: String!
+  $name: String!
+  $email: String!
+) {
+  createReview(
+    data: {
+      rating: $rating
+      content: $content
+      headline: $headline
+      name: $name
+      email: $email
+      product: { connect: { id: $productId } }
+    }
+  ) {
+    id
+  }
+}

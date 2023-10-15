@@ -3,6 +3,7 @@ import ProductImageGallery from "../atoms/product-view/product-image-gallery";
 import ProductInfo from "../molecules/product-view/product-info";
 import RelatedProducts from "../molecules/product-view/related-products";
 import Spinner from "../atoms/shared/spinner";
+import ReviewForm from "./review-form";
 
 const ProductView = ({ product }: { product: Product }) => {
   const { name, description, price, images, reviews } = product;
@@ -36,6 +37,7 @@ const ProductView = ({ product }: { product: Product }) => {
         >
           <RelatedProducts product={product} />
         </Suspense>
+        <ReviewForm productId={product.id} />
       </div>
     </div>
   );

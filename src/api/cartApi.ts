@@ -37,7 +37,7 @@ export async function addProductToCart(cartId: string, productId: string) {
     const orderItem = cart.orderItems.find((item) => item.product?.id === productId);
     if (!orderItem) return;
     await executeGraphql(CartChangeItemQuantityDocument, {
-      itemId: orderItem.id as string,
+      itemId: orderItem.id,
       quantity: orderItem.quantity + 1,
     });
 

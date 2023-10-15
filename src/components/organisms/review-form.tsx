@@ -1,30 +1,19 @@
-import React, { useState } from "react";
+import ReviewSubmit from "../atoms/product-view/review-submit";
+import { addReview } from "@/api/reviewApi";
 
-const ReviewForm = () => {
-  const [formData, setFormData] = useState({
-    headline: "",
-    content: "",
-    rating: "",
-    name: "",
-    email: "",
-  });
+const ReviewForm = ({ productId }: { productId: string }) => {
+  async function addReviewAction(formData: FormData) {
+    "use server";
 
-  const { headline, content, rating, name, email } = formData;
+    const review = Object.fromEntries(formData) as unknown as Review;
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Dodaj tutaj logikę wysyłania danych, np. wywołanie API
-    console.log("Dane formularza do wysłania", formData);
-  };
+    await addReview(productId, review);
+  }
 
   return (
     <div className="flex h-screen items-center justify-center">
       <div className="w-full max-w-md">
-        <form className="mb-4 rounded bg-white px-12 pb-8 pt-6 shadow-lg" onSubmit={handleSubmit}>
+        <form className="mb-4 rounded bg-white px-12 pb-8 pt-6 shadow-lg" action={addReviewAction}>
           <div className="mb-4">
             <label className="mb-2 block text-sm font-bold text-gray-700" htmlFor="headline">
               Headline
@@ -34,8 +23,6 @@ const ReviewForm = () => {
               name="headline"
               type="text"
               required
-              value={headline}
-              onChange={handleChange}
             />
           </div>
           <div className="mb-6">
@@ -46,8 +33,6 @@ const ReviewForm = () => {
               className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
               name="content"
               required
-              value={content}
-              onChange={handleChange}
             ></textarea>
           </div>
           <div className="mb-4">
@@ -59,8 +44,8 @@ const ReviewForm = () => {
               name="rating"
               type="number"
               required
-              value={rating}
-              onChange={handleChange}
+              max={5}
+              min={1}
             />
           </div>
           <div className="mb-4">
@@ -72,8 +57,6 @@ const ReviewForm = () => {
               name="name"
               type="text"
               required
-              value={name}
-              onChange={handleChange}
             />
           </div>
           <div className="mb-6">
@@ -85,17 +68,10 @@ const ReviewForm = () => {
               name="email"
               type="email"
               required
-              value={email}
-              onChange={handleChange}
             />
           </div>
           <div className="flex items-center justify-between">
-            <button
-              className="focus:shadow-outline rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 focus:outline-none"
-              type="submit"
-            >
-              Submit
-            </button>
+            <ReviewSubmit />
           </div>
         </form>
       </div>
