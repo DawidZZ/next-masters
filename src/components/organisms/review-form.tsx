@@ -13,7 +13,11 @@ const ReviewForm = ({ productId }: { productId: string }) => {
   return (
     <div className="flex h-screen items-center justify-center">
       <div className="w-full max-w-md">
-        <form className="mb-4 rounded bg-white px-12 pb-8 pt-6 shadow-lg" action={addReviewAction}>
+        <form
+          data-testid="add-review-form"
+          className="mb-4 rounded bg-white px-12 pb-8 pt-6 shadow-lg"
+          action={addReviewAction}
+        >
           <div className="mb-4">
             <label className="mb-2 block text-sm font-bold text-gray-700" htmlFor="headline">
               Headline
