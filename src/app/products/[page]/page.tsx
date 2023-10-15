@@ -1,5 +1,7 @@
+import { executeGraphql } from "@/api/graphqlApi";
 import Pagination from "@/components/organisms/pagination";
 import ProductsGrid from "@/components/organisms/products-grid";
+import { ProductsGetListDocument } from "@/gql/graphql";
 
 // TODO: temporary solution
 export function generateStaticParams() {
@@ -12,11 +14,17 @@ export default async function Products({ params }: { params: { page: string } })
       (Number(params.page) - 1) * 20
     }`,
   );
-  const products = (await response.json()) as Product[];
+  const productsREST = (await response.json()) as Product[];
+
+  const { products } = await executeGraphql(ProductsGetListDocument, {
+    offset: (Number(params.page) - 1) * 20,
+  });
+
+  console.log(products);
 
   return (
     <div className="min-h-full bg-white">
-      <ProductsGrid products={products} />
+      <ProductsGrid products={productsREST} />
       <Pagination from={1} to={10} current={Number(params.page)} href="/products" />
     </div>
   );
