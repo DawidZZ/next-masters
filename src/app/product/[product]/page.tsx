@@ -1,18 +1,30 @@
+import { executeGraphql } from "@/api/graphqlApi";
 import ProductView from "@/components/organisms/product-view";
+import { ProductGetByIdDocument } from "@/gql/graphql";
 
 export async function generateMetadata({ params }: { params: { product: string } }) {
-  const response = await fetch(`https://naszsklep-api.vercel.app/api/products/${params.product}`);
-  const product = (await response.json()) as Product;
+  const { product } = await executeGraphql(ProductGetByIdDocument, { id: params.product });
 
   return {
-    title: product.title,
-    description: product.description,
+    title: product?.name || "Product",
+    description: product?.description || "Product",
+    openGraph: {
+      title: product?.name || "Product",
+      description: product?.description || "Product",
+      images: [
+        {
+          url: product?.images[0].url || "",
+          width: 800,
+          height: 600,
+          alt: product?.name || "Product",
+        },
+      ],
+    },
   };
 }
 
 export default async function Product({ params }: { params: { product: string } }) {
-  const response = await fetch(`https://naszsklep-api.vercel.app/api/products/${params.product}`);
-  const product = (await response.json()) as Product;
+  const { product } = await executeGraphql(ProductGetByIdDocument, { id: params.product });
 
-  return <ProductView product={product} />;
+  return <>{product && <ProductView product={product} />}</>;
 }

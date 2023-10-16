@@ -8,7 +8,11 @@ const Links = () => {
           <ActiveLink exact href="/">
             Home
           </ActiveLink>
+          <ActiveLink href="/cart">Cart</ActiveLink>
           <ActiveLink href="/products">All</ActiveLink>
+          <ActiveLink href="/categories/t-shirts">T-Shirts</ActiveLink>
+          <ActiveLink href="/categories/hoodies">Hoodies</ActiveLink>
+          <ActiveLink href="/categories/accessories">Accessories</ActiveLink>
         </div>
       </div>
     </div>

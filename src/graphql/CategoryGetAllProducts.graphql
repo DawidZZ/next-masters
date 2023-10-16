@@ -1,0 +1,8 @@
+query CategoryGetAllProducts($slug: String) {
+  categories(where: { slug_contains: $slug }) {
+    name
+    products {
+      ...ProductListItem
+    }
+  }
+}

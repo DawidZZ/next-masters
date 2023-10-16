@@ -4,10 +4,9 @@ function classNames(...classes: (string | boolean)[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-const Rating = ({ rate, count }: { rate: number; count: number }) => {
+const Rating = ({ rate, count }: { rate: number; count: number; onlyStars?: boolean }) => {
   return (
     <div className="mt-6">
-      <h3 className="sr-only">Reviews</h3>
       <div className="flex items-center">
         <div className="flex items-center">
           {[0, 1, 2, 3, 4].map((rating) => (
@@ -22,8 +21,11 @@ const Rating = ({ rate, count }: { rate: number; count: number }) => {
           ))}
         </div>
         <p className="sr-only">{rate} out of 5 stars</p>
-        <div className="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500">
-          {count} reviews
+        <div
+          data-testid="product-rating"
+          className="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500"
+        >
+          {rate ? <>{Math.round((rate / count) * 100) / 100}/5</> : 0}
         </div>
       </div>
     </div>
