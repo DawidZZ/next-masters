@@ -26,8 +26,9 @@ const documents = {
     "query CollectionsGetProducts($slug: String) {\n  collections(where: {slug_contains: $slug}) {\n    name\n    slug\n    products {\n      ...ProductListItem\n    }\n  }\n}": types.CollectionsGetProductsDocument,
     "query ProductGetById($id: ID!) {\n  product(where: {id: $id}) {\n    id\n    name\n    description\n    categories {\n      name\n    }\n    images {\n      url\n    }\n    price\n    reviews {\n      rating\n    }\n  }\n}": types.ProductGetByIdDocument,
     "query ProductGetRelated($id: ID!) {\n  product(where: {id: $id}) {\n    categories(first: 1) {\n      products(first: 4) {\n        ...ProductListItem\n      }\n    }\n  }\n}": types.ProductGetRelatedDocument,
-    "fragment ProductListItem on Product {\n  id\n  description\n  name\n  price\n  images(first: 4) {\n    url\n  }\n}": types.ProductListItemFragmentDoc,
-    "query ProductsGetList($count: Int, $offset: Int) {\n  products(first: $count, skip: $offset) {\n    id\n    name\n    description\n    categories(first: 1) {\n      name\n    }\n    images(first: 4) {\n      url\n    }\n    price\n  }\n}": types.ProductsGetListDocument,
+    "fragment ProductListItem on Product {\n  id\n  description\n  name\n  price\n  images(first: 4) {\n    url\n  }\n  reviews {\n    rating\n  }\n}": types.ProductListItemFragmentDoc,
+    "query ProductsGetAll {\n  products {\n    ...ProductListItem\n  }\n}": types.ProductsGetAllDocument,
+    "query ProductsGetList($count: Int, $offset: Int) {\n  products(first: $count, skip: $offset) {\n    ...ProductListItem\n  }\n}": types.ProductsGetListDocument,
     "query ProductsGetSearched($search: String!) {\n  products(where: {name_contains: $search}) {\n    ...ProductListItem\n  }\n}": types.ProductsGetSearchedDocument,
     "mutation ReviewAdd($productId: ID!, $rating: Int!, $content: String!, $headline: String!, $name: String!, $email: String!) {\n  createReview(\n    data: {rating: $rating, content: $content, headline: $headline, name: $name, email: $email, product: {connect: {id: $productId}}}\n  ) {\n    id\n  }\n}": types.ReviewAddDocument,
 };
@@ -83,11 +84,15 @@ export function graphql(source: "query ProductGetRelated($id: ID!) {\n  product(
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "fragment ProductListItem on Product {\n  id\n  description\n  name\n  price\n  images(first: 4) {\n    url\n  }\n}"): typeof import('./graphql').ProductListItemFragmentDoc;
+export function graphql(source: "fragment ProductListItem on Product {\n  id\n  description\n  name\n  price\n  images(first: 4) {\n    url\n  }\n  reviews {\n    rating\n  }\n}"): typeof import('./graphql').ProductListItemFragmentDoc;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "query ProductsGetList($count: Int, $offset: Int) {\n  products(first: $count, skip: $offset) {\n    id\n    name\n    description\n    categories(first: 1) {\n      name\n    }\n    images(first: 4) {\n      url\n    }\n    price\n  }\n}"): typeof import('./graphql').ProductsGetListDocument;
+export function graphql(source: "query ProductsGetAll {\n  products {\n    ...ProductListItem\n  }\n}"): typeof import('./graphql').ProductsGetAllDocument;
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "query ProductsGetList($count: Int, $offset: Int) {\n  products(first: $count, skip: $offset) {\n    ...ProductListItem\n  }\n}"): typeof import('./graphql').ProductsGetListDocument;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

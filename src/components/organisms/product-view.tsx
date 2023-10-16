@@ -7,9 +7,9 @@ import ReviewForm from "./review-form";
 
 const ProductView = ({ product }: { product: Product }) => {
   const { name, description, price, images, reviews } = product;
-  const safeReveiews = reviews ?? [];
-  const count = safeReveiews.length;
-  const rate = safeReveiews.reduce((acc, review) => acc + review.rating, 0) / safeReveiews.length;
+  const safeReviews = reviews ?? [];
+  const count = safeReviews.length;
+  const rate = safeReviews.reduce((acc, review) => acc + review.rating, 0) / safeReviews.length;
 
   return (
     <div className="bg-white">

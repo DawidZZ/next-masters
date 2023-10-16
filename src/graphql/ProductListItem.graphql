@@ -6,4 +6,7 @@ fragment ProductListItem on Product {
   images(first: 4) {
     url
   }
+  reviews {
+    rating
+  }
 }
